@@ -26,4 +26,22 @@ class ProfileViewModel: ObservableObject {
             }
         }
     }
+    
+    func updateUserAvatar(url: URL) {
+        currentUser?.avatar = url
+
+        // Save the updated avatar URL to Firebase
+        guard let userId = FirebaseService.shared.getCurrentUserId() else { return }
+        
+        let db = Firestore.firestore()
+        db.collection("users").document(userId).updateData([
+            "avatar": url.absoluteString
+        ]) { error in
+            if let error = error {
+                print("Error updating avatar: \(error.localizedDescription)")
+            } else {
+                print("Avatar URL successfully updated in Firebase")
+            }
+        }
+    }
 }
