@@ -5,6 +5,8 @@ struct ProfileView: View {
     @EnvironmentObject var profileViewModel: ProfileViewModel
     @EnvironmentObject var authViewModel: AuthViewModel
 
+    @State private var avatarURLInput: String = ""
+
     var body: some View {
         VStack {
             if let user = profileViewModel.currentUser {
@@ -41,6 +43,27 @@ struct ProfileView: View {
                         .font(.headline)
                         .foregroundColor(.green)
                         .padding(.top, 10)
+                    
+                    // Avatar URL input field
+                    TextField("Enter Avatar URL", text: $avatarURLInput)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                    
+                    Button(action: {
+                        // Update avatar URL when button is tapped
+                        if let newAvatarURL = URL(string: avatarURLInput) {
+                            profileViewModel.updateUserAvatar(url: newAvatarURL)
+                        }
+                    }) {
+                        Text("Update Avatar")
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                            .padding(.horizontal, 40)
+                    }
                 }
                 .padding()
 
