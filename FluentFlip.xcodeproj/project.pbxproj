@@ -27,6 +27,7 @@
 		4AF6DFFC2D57593A00380992 /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 4AF6DFFB2D57593A00380992 /* FirebaseFirestoreCombine-Community */; };
 		4AF6E0252D57A20D00380992 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 4AF6E0242D57A20D00380992 /* Kingfisher */; settings = {ATTRIBUTES = (Required, ); }; };
 		4AF6E0272D57A29F00380992 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 4AF6E0262D57A29F00380992 /* Kingfisher */; };
+		4AF6E0CC2D57DA5700380992 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 4AF6E0CB2D57DA5700380992 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		4AF6DF9D2D57563900380992 /* FluentFlip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FluentFlip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AF6DFAD2D57563B00380992 /* FluentFlipTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FluentFlipTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AF6DFB72D57563B00380992 /* FluentFlipUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FluentFlipUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4AF6E0CB2D57DA5700380992 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -122,6 +124,7 @@
 				4AF6DFB02D57563B00380992 /* FluentFlipTests */,
 				4AF6DFBA2D57563B00380992 /* FluentFlipUITests */,
 				4AF6DF9E2D57563900380992 /* Products */,
+				4AF6E0CB2D57DA5700380992 /* README.md */,
 			);
 			sourceTree = "<group>";
 		};
@@ -279,6 +282,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AF6E0CC2D57DA5700380992 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
