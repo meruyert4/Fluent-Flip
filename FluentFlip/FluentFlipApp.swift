@@ -1,17 +1,20 @@
-//
-//  FluentFlipApp.swift
-//  FluentFlip
-//
-//  Created by Meruyert Boranbay on 08.02.2025.
-//
-
 import SwiftUI
+import Firebase
 
 @main
 struct FluentFlipApp: App {
+    @StateObject var authViewModel = AuthViewModel()
+    @StateObject var profileViewModel = ProfileViewModel()
+
+    init() {
+        FirebaseApp.configure()
+    }
+
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(authViewModel)
+                .environmentObject(profileViewModel)
         }
     }
 }
