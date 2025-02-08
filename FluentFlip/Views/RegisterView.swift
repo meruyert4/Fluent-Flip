@@ -11,27 +11,36 @@ struct RegisterView: View {
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
-        VStack {
+        VStack(spacing: 20) {
             Text("Register")
-                .font(.largeTitle)
+                .font(.largeTitle.bold())
                 .padding()
+                .foregroundColor(.blue)
 
             TextField("Username", text: $username)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
+                .background(Color.gray.opacity(0.2))
+                .cornerRadius(10)
+                .padding(.horizontal)
 
             TextField("Email", text: $email)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
                 .autocapitalization(.none)
                 .padding()
+                .background(Color.gray.opacity(0.2))
+                .cornerRadius(10)
+                .padding(.horizontal)
 
             SecureField("Password", text: $password)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
+                .background(Color.gray.opacity(0.2))
+                .cornerRadius(10)
+                .padding(.horizontal)
             
             SecureField("Confirm Password", text: $confirmPassword)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
+                .background(Color.gray.opacity(0.2))
+                .cornerRadius(10)
+                .padding(.horizontal)
 
             if let errorMessage = authViewModel.authErrorMessage {
                 Text(errorMessage)
@@ -43,22 +52,35 @@ struct RegisterView: View {
                 Text("A verification link has been sent to \(email). Please check your inbox and verify your email before signing in.")
                     .foregroundColor(.blue)
                     .padding()
-                
+                    .multilineTextAlignment(.center)
+
                 Button("Sign In") {
                     authViewModel.signInUser(email: email, password: password) { success in
                         if success { dismiss() }
                     }
                 }
+                .frame(maxWidth: .infinity)
                 .padding()
-                .buttonStyle(.borderedProminent)
+                .background(Color.green)
+                .foregroundColor(.white)
+                .cornerRadius(15)
+                .padding(.horizontal)
             } else {
                 Button("Sign Up") {
                     signUpUser()
                 }
+                .frame(maxWidth: .infinity)
                 .padding()
-                .buttonStyle(.borderedProminent)
+                .background(Color.blue)
+                .foregroundColor(.white)
+                .cornerRadius(15)
+                .padding(.horizontal)
             }
         }
+        .padding()
+        .background(Color.white)
+        .cornerRadius(15)
+        .shadow(radius: 10)
         .padding()
         .onOpenURL { url in
             authViewModel.verifyEmailLink(url.absoluteString) { success in
