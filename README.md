@@ -13,12 +13,12 @@ Welcome to **FluentFlip** – the most fun and interactive way to learn **French
 ## 📌 Screenshots
 | Home 🏠 | Flashcards 🎴 | Leaderboard 🏆 |
 |---|---|---|
-| ![Home Screen](assets/home.png) | ![Flashcards](assets/flashcards.png) | ![Leaderboard](assets/leaderboard.png) |
+| ![Home Screen](assets/home) | ![Flashcards](assets/flashcards) | ![Leaderboard](assets/leaderboard) |
 
 ## 📜 Entity Relationship Diagram (ERD)
 Here's how the database is structured:
 
-![ERD](assets/ERD.png)
+![ERD](assets/ERD)
 
 ## 🚀 Tech Stack
 - **SwiftUI** – Beautiful and responsive UI.
