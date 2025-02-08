@@ -21,10 +21,12 @@ struct MainTabView: View {
                     Label("Leaderboard", systemImage: "trophy.fill")
                 }
 
-            ProfileView()
-                .tabItem {
-                    Label("Profile", systemImage: "person.fill")
-                }
+            NavigationView {
+                ProfileView()
+            }
+            .tabItem {
+                Label("Profile", systemImage: "person.fill")
+            }
         }
     }
 }

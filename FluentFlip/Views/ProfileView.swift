@@ -6,16 +6,19 @@ struct ProfileView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
 
     @State private var avatarURLInput: String = ""
+    @State private var isEditingStatus: Bool = false
+    @State private var newStatus: String = ""
 
     var body: some View {
         VStack {
             if let user = profileViewModel.currentUser {
                 VStack {
+                    // Avatar Section
                     if let avatarURL = user.avatar {
                         KFImage(avatarURL)
                             .resizable()
                             .scaledToFit()
-                            .frame(width: 100, height: 100)
+                            .frame(width: 200, height: 200)
                             .clipShape(Circle())
                             .overlay(Circle().stroke(Color.gray, lineWidth: 2))
                             .shadow(radius: 5)
@@ -34,15 +37,37 @@ struct ProfileView: View {
                         .font(.subheadline)
                         .foregroundColor(.gray)
 
-                    Text("Status: \(user.status)")
-                        .font(.body)
-                        .foregroundColor(.blue)
-                        .padding(.top, 5)
-
-                    Text("Learned Flashcards: \(user.learnedcards ?? 0)")
-                        .font(.headline)
-                        .foregroundColor(.green)
-                        .padding(.top, 10)
+                    // Editable Status Section
+                    HStack {
+                        if isEditingStatus {
+                            TextField("Enter new status", text: $newStatus)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .frame(maxWidth: 200)
+                            
+                            Button(action: {
+                                profileViewModel.updateUserStatus(newStatus)
+                                isEditingStatus = false
+                            }) {
+                                Image(systemName: "checkmark.circle.fill")
+                                    .foregroundColor(.green)
+                                    .font(.title2)
+                            }
+                        } else {
+                            Text("Status: \(user.status)")
+                                .font(.body)
+                                .foregroundColor(.blue)
+                            
+                            Button(action: {
+                                newStatus = user.status
+                                isEditingStatus = true
+                            }) {
+                                Image(systemName: "pencil")
+                                    .foregroundColor(.gray)
+                                    .font(.title2)
+                            }
+                        }
+                    }
+                    .padding(.top, 5)
                     
                     // Avatar URL input field
                     TextField("Enter Avatar URL", text: $avatarURLInput)
@@ -51,7 +76,6 @@ struct ProfileView: View {
                         .frame(maxWidth: .infinity)
                     
                     Button(action: {
-                        // Update avatar URL when button is tapped
                         if let newAvatarURL = URL(string: avatarURLInput) {
                             profileViewModel.updateUserAvatar(url: newAvatarURL)
                         }
@@ -66,25 +90,23 @@ struct ProfileView: View {
                     }
                 }
                 .padding()
-
-                Spacer()
-
-                Button(action: {
-                    authViewModel.signOut()
-                }) {
-                    Text("Sign Out")
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(Color.red)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
-                        .padding(.horizontal, 40)
-                }
             } else {
                 ProgressView()
             }
         }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(action: {
+                    authViewModel.signOut()
+                }) {
+                    Image(systemName: "rectangle.portrait.and.arrow.right")
+                        .foregroundColor(.red)
+                        .font(.title2)
+                }
+            }
+        }
         .padding()
+
         .onAppear {
             profileViewModel.fetchUserProfile()
         }
