@@ -18,7 +18,7 @@ Welcome to **FluentFlip** – the most fun and interactive way to learn **French
 ## 📜 Entity Relationship Diagram (ERD)
 Here's how the database is structured:
 
-![ERD](FluentFlip/Images/ERD)
+![ERD](FluentFlip/Images/ERD.png)
 
 ## 🚀 Tech Stack
 - **SwiftUI** – Beautiful and responsive UI.
